@@ -1,0 +1,103 @@
+cv2 :
+
+    .VideoCapture(path) -> on ouvre fichier vidéo 
+    .isOpened() -> vérifie que la vidéo s'ouvre bien 
+    .read() -> on lit la frame suivante d'une vidéo 
+                2 outputs : ret, frame = cap.read()
+                        ret -> bool (réussite), on l'utilise pour voir si la lecture a fonctionné, sinon quand on va
+                                                essayer d'utiliser l'image(save, etc..), le programme va planter
+                        frame -> l'image
+    .imwrite() -> enregistre l'image
+        cv2.imwrite(filename, image)
+
+    .get(cv2.CAP_PROP_FPS) -> catch fps amont of a vidéo    
+        si fps=60, la 2eme seconde correspond à la 60ème image ( amount_fps * 2 )
+    .set(cv2.CAP_PROP_POS_FRAMES, X) -> on se rend à la frame X
+    tags:
+            # Source - https://stackoverflow.com/q/11420748
+            # Posted by Mike, modified by community. See post 'Timeline' for change history
+            # Retrieved 2026-03-26, License - CC BY-SA 4.0
+
+            0. CV_CAP_PROP_POS_MSEC Current position of the video file in milliseconds.
+            1. CV_CAP_PROP_POS_FRAMES 0-based index of the frame to be decoded/captured next.
+            2. CV_CAP_PROP_POS_AVI_RATIO Relative position of the video file
+            3. CV_CAP_PROP_FRAME_WIDTH Width of the frames in the video stream.
+            4. CV_CAP_PROP_FRAME_HEIGHT Height of the frames in the video stream.
+            5. CV_CAP_PROP_FPS Frame rate.
+            6. CV_CAP_PROP_FOURCC 4-character code of codec.
+            7. CV_CAP_PROP_FRAME_COUNT Number of frames in the video file.
+            8. CV_CAP_PROP_FORMAT Format of the Mat objects returned by retrieve() .
+            9. CV_CAP_PROP_MODE Backend-specific value indicating the current capture mode.
+            10. CV_CAP_PROP_BRIGHTNESS Brightness of the image (only for cameras).
+            11. CV_CAP_PROP_CONTRAST Contrast of the image (only for cameras).
+            12. CV_CAP_PROP_SATURATION Saturation of the image (only for cameras).
+            13. CV_CAP_PROP_HUE Hue of the image (only for cameras).
+            14. CV_CAP_PROP_GAIN Gain of the image (only for cameras).
+            15. CV_CAP_PROP_EXPOSURE Exposure (only for cameras).
+            16. CV_CAP_PROP_CONVERT_RGB Boolean flags indicating whether images should be converted to RGB.
+            17. CV_CAP_PROP_WHITE_BALANCE Currently unsupported
+            18. CV_CAP_PROP_RECTIFICATION Rectification flag for stereo cameras (note: only supported by DC1394 v 2.x backend currently)
+
+    .imencode('.jpg', frame) -> https://www.geeksforgeeks.org/python/python-opencv-imencode-function/
+
+base64 : 
+    base64.b64encode(buffer).decode('utf-8')
+
+sqlite3 :
+    conn = sqlite3.connect('ma_base.db') -> créer fichier 
+    cursor = conn.cursor()
+    cursor.execute("CREATE TABLE IF NOT EXISTS...")
+
+    https://docs.python.org/3/library/sqlite3.html
+    https://www.sqlitetutorial.net/sqlite-autoincrement/
+
+os : 
+    .path.exists(chemin) -> True / False
+    .makedirs(nom)
+    .listdir(chemin) / .scandir(path) https://docs.python.org/3/library/os.html
+    .endswith('.mp4')
+
+    .path -> https://docs.python.org/3/library/os.path.html
+
+    --Gemini--
+    os.path.dirname(os.path.abspath(__file__))
+    __file__ contient le chemin complet du script actuel
+    os.path.abspath s'assure que le chemin est "propre"
+    os.path.dirname retire le nom du fichier pour ne garder que le dossier
+    --Gemini--
+
+time : 
+    https://docs.python.org/3/library/time.html#module-time
+
+openAI : 
+    https://github.com/openai/openai-python
+
+env : 
+    https://pypi.org/project/python-dotenv/
+
+shutil : 
+    shutil.move(origine, destination)
+
+
+1. Ajoute :
+retry system
+validation stricte
+gestion erreurs propre
+2. Sépare :
+logique métier
+API GPT
+DB
+3. Ajoute :
+logs propres (logging)
+pas de print
+4. Pense :
+
+"si ça tourne 24/7, qu’est-ce qui casse ?"
+
+Tu pourrais t’amuser à :
+
+🔍 injecter du prompt malveillant (prompt injection)
+🧪 tester des inputs cassés
+🔐 sécuriser la gestion API key
+📂 tester des path traversal (../)
+💣 simuler des erreurs API
