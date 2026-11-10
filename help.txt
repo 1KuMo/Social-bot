@@ -78,7 +78,8 @@ env :
 shutil : 
     shutil.move(origine, destination)
 
-
+-------------
+NOTE IA - idées à tester pour perfectionner le projet ( quand il sera fini ) 
 1. Ajoute :
 retry system
 validation stricte
@@ -101,3 +102,4 @@ Tu pourrais t’amuser à :
 🔐 sécuriser la gestion API key
 📂 tester des path traversal (../)
 💣 simuler des erreurs API
+----------------
